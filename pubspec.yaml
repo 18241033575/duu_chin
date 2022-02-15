@@ -51,6 +51,10 @@ dev_dependencies:
   flutter_easyrefresh: ^2.2.0
   # 懒加载的层叠组件
   proste_indexed_stack: ^0.2.2
+  fluttertoast: ^8.0.7
+  share_extend: ^2.0.0
+  shared_preferences: ^2.0.6
+  connectivity_plus: ^1.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

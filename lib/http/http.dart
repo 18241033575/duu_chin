@@ -40,9 +40,9 @@ class Http {
   /// restful get 操作
   static Future get(
       String path, {
-        required Map<String, dynamic> params,
-        required Options options,
-        required CancelToken cancelToken,
+        Map<String, dynamic>? params,
+        Options? options,
+        CancelToken? cancelToken,
       }) async {
     return await HttpRequest().get(
       path,
@@ -55,10 +55,10 @@ class Http {
   /// restful post 操作
   static Future post(
       String path, {
-        required Map<String, dynamic> params,
+        Map<String, dynamic>? params,
         dynamic data,
-        required Options options,
-        required CancelToken cancelToken,
+        Options? options,
+        CancelToken? cancelToken,
       }) async {
     return await HttpRequest().post(
       path,
@@ -72,9 +72,9 @@ class Http {
   /// restful post form 表单提交操作
   static Future postForm(
       String path, {
-        required Map<String, dynamic> params,
-        required Options options,
-        required CancelToken cancelToken,
+        Map<String, dynamic>? params,
+        Options? options,
+        CancelToken? cancelToken,
       }) async {
     return await HttpRequest().postForm(
       path,

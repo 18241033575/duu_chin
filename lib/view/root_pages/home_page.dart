@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:duu_chin/config/app_colors.dart';
 import 'package:duu_chin/components/root_page_head.dart';
+import 'package:duu_chin/request/http_utils.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
+    getDataList();
     // Http.get();
 
     _tabController = TabController(
@@ -59,6 +60,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void dispose() {
     _tabController?.dispose();
     super.dispose();
+  }
+
+  void getDataList() async {
+    try {
+      dynamic response = await HttpUtils.get('http://localhost:3080/test');
+      print(response);
+    } catch(e) {
+
+    }
   }
 
   @override
