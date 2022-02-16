@@ -10,7 +10,7 @@ class HttpRequest {
   // 初始化一个单例实例
   static final HttpRequest _instance = HttpRequest._internal();
   // dio 实例
-  Dio dio;
+  Dio? dio;
   // 内部构造方法
   HttpRequest._internal() {
     if (dio == null) {
@@ -24,7 +24,7 @@ class HttpRequest {
       // 没有实例 则创建之
       dio = new Dio(baseOptions);
       // 添加拦截器
-      dio.interceptors.add(HttpInterceptor());
+      dio?.interceptors.add(HttpInterceptor());
     }
   }
 
@@ -42,18 +42,18 @@ class HttpRequest {
     required Map<String, dynamic> headers,
     required List<Interceptor> interceptors,
   }) {
-    dio.options.baseUrl = baseUrl;
-    dio.options.connectTimeout = connectTimeout;
-    dio.options.receiveTimeout = receiveTimeout;
-    dio.options.headers = headers;
+    dio?.options.baseUrl = baseUrl;
+    dio?.options.connectTimeout = connectTimeout;
+    dio?.options.receiveTimeout = receiveTimeout;
+    dio?.options.headers = headers;
     if (interceptors != null && interceptors.isNotEmpty) {
-      dio.interceptors..addAll(interceptors);
+      dio?.interceptors.addAll(interceptors);
     }
   }
 
   /// 设置请求头
   void setHeaders(Map<String, dynamic> headers) {
-    dio.options.headers.addAll(headers);
+    dio?.options.headers.addAll(headers);
   }
 
   CancelToken _cancelToken = new CancelToken();
@@ -70,9 +70,9 @@ class HttpRequest {
 
   /// 设置鉴权请求头
   Options setAuthorizationHeader(Options requestOptions) {
-    String _token;
+    String? _token;
     if (_token != null) {
-      requestOptions.headers['token'] = _token;
+      requestOptions.headers?['token'] = _token;
     }
     return requestOptions;
   }
@@ -86,13 +86,13 @@ class HttpRequest {
       }) async {
     Options requestOptions = setAuthorizationHeader(options ?? Options());
 
-    Response response = await dio.get(
+    Response? response = await dio?.get(
       path,
       queryParameters: params,
       options: requestOptions,
       cancelToken: cancelToken ?? _cancelToken,
     );
-    return response.data;
+    return response?.data;
   }
 
   /// restful post 操作
@@ -105,14 +105,14 @@ class HttpRequest {
       }) async {
     Options requestOptions = setAuthorizationHeader(options ?? Options());
 
-    Response response = await dio.post(
+    Response? response = await dio?.post(
       path,
       data: data,
       queryParameters: params,
       options: requestOptions,
       cancelToken: cancelToken ?? _cancelToken,
     );
-    return response.data;
+    return response?.data;
   }
 
   /// restful post form 表单提交操作
@@ -124,12 +124,12 @@ class HttpRequest {
       }) async {
     Options requestOptions = setAuthorizationHeader(options ?? Options());
 
-    Response response = await dio.post(
+    Response? response = await dio?.post(
       path,
       data: FormData.fromMap(params),
       options: requestOptions,
       cancelToken: cancelToken ?? _cancelToken,
     );
-    return response.data;
+    return response?.data;
   }
 }
