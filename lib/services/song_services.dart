@@ -1,4 +1,4 @@
-import 'package:duu_chin/http/http.dart';
+import 'package:duu_chin/request/http_utils.dart';
 
 class SongService {
   static const String rootPath = 'api/song';
@@ -6,9 +6,8 @@ class SongService {
   static const String infoPath = '$rootPath/info';
 
   Future getSongs({int page = 1, int limit = 10}) async {
-    final response = await Http.post(
-        listPath,
-        data: {'page': page, 'limit': limit},
+    final response = await HttpUtils.get(
+      'http://localhost:3080/song/list',
     );
 
     Map<String, dynamic> result = response('page');

@@ -25,7 +25,7 @@ class SongItem {
   final int commentCount;
   final int thumbUpCount;
   final int readCount;
-  final UserItem user;
+  // final UserItem user;
 
 
   SongItem({
@@ -38,7 +38,7 @@ class SongItem {
     required this.commentCount,
     required this.thumbUpCount,
     required this.readCount,
-    required this.user,
+    // required this.user,
   });
 
 
@@ -53,7 +53,7 @@ class SongItem {
         commentCount: item['commentCount'],
         thumbUpCount: item['thumbUpCount'],
         readCount: item['readCount'],
-        user: UserItem.fromJson(item['user']),
+        // user: UserItem.fromJson(item['user']),
     );
   }
 }
