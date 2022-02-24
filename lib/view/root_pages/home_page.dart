@@ -1,3 +1,4 @@
+import 'package:duu_chin/view/sub_pages/song_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:duu_chin/config/app_colors.dart';
@@ -12,9 +13,9 @@ class HomePage extends StatefulWidget {
 }
 
 const List<Tab> _tabs = [
+  Tab(text: '歌曲'),
   Tab(text: '微读'),
   Tab(text: '推荐'),
-  Tab(text: '歌曲'),
   Tab(text: '歌手'),
   Tab(text: '小视频'),
   Tab(text: '文章'),
@@ -25,7 +26,7 @@ const List<Tab> _tabs = [
 ];
 
 final List<Widget> _tabsContent = [
-  Text('weidu1'),
+  SongPage(),
   Text('weidu1'),
   Text('weidu1'),
   Text('weidu1'),
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    getDataList();
+    // getDataList();
     // Http.get();
 
     _tabController = TabController(
@@ -64,10 +65,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   void getDataList() async {
     try {
-      dynamic response = await HttpUtils.get('http://localhost:3080/test');
+      dynamic response = await HttpUtils.get('http://localhost:3080/song/list');
       print(response);
     } catch(e) {
-
+      print(e);
     }
   }
 
