@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import 'user_modal.dart';
 
 class SongList {

@@ -1,12 +1,17 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:duu_chin/models/song_modal.dart';
 import 'package:duu_chin/config/app_colors.dart';
 import 'package:flutter/material.dart';
-
+AudioCache audioCache = AudioCache();
+AudioPlayer advancedPlayer = AudioPlayer();
 
 class SongCard extends StatelessWidget {
+
   final SongItem songItem;
 
-  const SongCard({Key? key, required this.songItem,}) : super(key: key);
+  const SongCard({Key? key, required this.songItem, }) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,11 +47,19 @@ class SongCard extends StatelessWidget {
             ),
           ),
           Center(
-            child: Image.asset(
-              'assets/images/icons/tiny_video.png',
-              width: 22,
-              height: 22,
-              color: Colors.white,
+            child: InkWell(
+              child: Image.asset(
+                'assets/images/icons/tiny_video.png',
+                width: 22,
+                height: 22,
+                color: Colors.white,
+              ),
+              onTap: () async {
+                await advancedPlayer.play(
+                  songItem.songUrl,
+                  isLocal: false,
+                );
+              },
             ),
           )
         ],
