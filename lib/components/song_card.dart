@@ -5,12 +5,18 @@ import 'package:flutter/material.dart';
 AudioCache audioCache = AudioCache();
 AudioPlayer advancedPlayer = AudioPlayer();
 
-class SongCard extends StatelessWidget {
-
+class SongCard extends StatefulWidget {
   final SongItem songItem;
-
   const SongCard({Key? key, required this.songItem, }) : super(key: key);
 
+  @override
+  _SongPageCard createState() => _SongPageCard();
+}
+
+class _SongPageCard extends State<SongCard> {
+
+  var playedUrl = '';
+  var status = '';
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +34,6 @@ class SongCard extends StatelessWidget {
     );
   }
 
-
-
   // 封面
   Widget _songCover() {
     return Container(
@@ -42,23 +46,47 @@ class SongCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             child: FadeInImage.assetNetwork(
                 placeholder: 'assets/images/common/lazy-1.png',
-                image: songItem.coverPictureUrl,
+                image: widget.songItem.coverPictureUrl,
                 fit: BoxFit.cover,
             ),
           ),
           Center(
             child: InkWell(
               child: Image.asset(
-                'assets/images/icons/tiny_video.png',
+                this.status == 'pause' ? 'assets/images/icons/tiny_video.png' : 'assets/images/icons/play_plus.png',
                 width: 22,
                 height: 22,
                 color: Colors.white,
               ),
               onTap: () async {
-                await advancedPlayer.play(
-                  songItem.songUrl,
-                  isLocal: false,
-                );
+                if(this.playedUrl != widget.songItem.songUrl) {
+                  setState(() {
+                    playedUrl = widget.songItem.songUrl;
+                  });
+                  await advancedPlayer.play(
+                    widget.songItem.songUrl,
+                    isLocal: false,
+                  );
+                } else {
+                  if(this.status == 'pause') {
+                    await advancedPlayer.resume();
+                    setState(() {
+                      status = '';
+                    });
+                  } else {
+                    advancedPlayer.pause();
+                    setState(() {
+                      status = 'pause';
+                    });
+                  }
+                }
+
+                advancedPlayer.onPlayerCompletion.listen((event) {
+                  setState(() {
+                    playedUrl = '';
+                    status = '';
+                  });
+                });
               },
             ),
           )
@@ -75,7 +103,7 @@ class SongCard extends StatelessWidget {
         child: Stack(
           children: [
             Text(
-              songItem.cnName,
+              widget.songItem.cnName,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
@@ -86,7 +114,7 @@ class SongCard extends StatelessWidget {
             Positioned(
               top: 25,
               child: Text(
-                songItem.enName,
+                widget.songItem.enName,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -102,11 +130,11 @@ class SongCard extends StatelessWidget {
                   Expanded(
                       child: Row(
                         children: [
-                          Text(songItem.readCount.toString()),
+                          Text(widget.songItem.readCount.toString()),
                           SizedBox(width: 10,),
-                          Text(songItem.thumbUpCount.toString()),
+                          Text(widget.songItem.thumbUpCount.toString()),
                           SizedBox(width: 10,),
-                          Text(songItem.commentCount.toString()),
+                          Text(widget.songItem.commentCount.toString()),
                         ],
                       )
                   )

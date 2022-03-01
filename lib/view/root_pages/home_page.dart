@@ -1,4 +1,5 @@
 import 'package:duu_chin/view/sub_pages/song_page.dart';
+import 'package:duu_chin/view/sub_pages/tiny_videos.dart';
 import 'package:flutter/material.dart';
 
 import 'package:duu_chin/config/app_colors.dart';
@@ -30,7 +31,7 @@ final List<Widget> _tabsContent = [
   Text('weidu1'),
   Text('weidu1'),
   Text('weidu1'),
-  Text('weidu1'),
+  TinyVideos(),
   Text('weidu1'),
   Text('weidu1'),
   Text('weidu1'),
