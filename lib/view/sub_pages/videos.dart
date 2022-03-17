@@ -12,11 +12,17 @@ class _videos extends State<Videos> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('videos list page'),
-      // child: ListView(
-      //
-      // ),
+    return ListView.builder(
+      itemCount: 15,
+      itemBuilder: (BuildContext context, int index) {
+        return Column(
+          children: [
+            Container(
+              child: Text('$index'),
+            )
+          ],
+        );
+      },
     );
   }
 }

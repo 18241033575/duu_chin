@@ -36,10 +36,10 @@ class _RootPageState extends State<RootPage> {
       child: Container(),
     ),
     IndexedStackChild(
-      child: ProfilePage(),
+      child: TinyVideoPage(),
     ),
     IndexedStackChild(
-      child: TinyVideoPage(),
+      child: ProfilePage(),
     ),
   ];
 
