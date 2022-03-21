@@ -28,6 +28,9 @@ class _TinyVideoPageState extends State<TinyVideoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        color: Colors.black87,
         child: _controller.value.isInitialized
             ? AspectRatio(
           aspectRatio: _controller.value.aspectRatio,
