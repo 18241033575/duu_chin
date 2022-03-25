@@ -2,6 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:duu_chin/models/song_modal.dart';
 import 'package:duu_chin/config/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import 'comment_part.dart';
 AudioCache audioCache = AudioCache();
 AudioPlayer advancedPlayer = AudioPlayer();
 
@@ -128,15 +130,7 @@ class _SongPageCard extends State<SongCard> {
               child: Row(
                 children: [
                   Expanded(
-                      child: Row(
-                        children: [
-                          Text(widget.songItem.readCount.toString()),
-                          SizedBox(width: 10,),
-                          Text(widget.songItem.thumbUpCount.toString()),
-                          SizedBox(width: 10,),
-                          Text(widget.songItem.commentCount.toString()),
-                        ],
-                      )
+                    child: CommentPart(songItem: widget.songItem,),
                   )
                 ],
               ),
