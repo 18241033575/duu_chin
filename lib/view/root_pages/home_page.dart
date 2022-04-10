@@ -1,3 +1,4 @@
+import 'package:duu_chin/view/sub_pages/article.dart';
 import 'package:duu_chin/view/sub_pages/singer_page.dart';
 import 'package:duu_chin/view/sub_pages/song_page.dart';
 import 'package:duu_chin/view/sub_pages/tiny_videos.dart';
@@ -34,7 +35,7 @@ final List<Widget> _tabsContent = [
   SingerPage(),
   TinyVideos(),
   Text('listen book'),
-  Text('article'),
+  Articles(),
   Videos(),
   Text('topic'),
 ];

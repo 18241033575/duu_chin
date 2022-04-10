@@ -5,14 +5,14 @@ import 'package:duu_chin/request/http_utils.dart';
 import 'package:flutter/material.dart';
 
 
-class Videos extends StatefulWidget {
-  const Videos({Key? key}) : super(key: key);
+class Articles extends StatefulWidget {
+  const Articles({Key? key}) : super(key: key);
 
   @override
-  _videos createState() => _videos();
+  _articles createState() => _articles();
 }
 
-class _videos extends State<Videos> {
+class _articles extends State<Articles> {
 
   List<SongItem> _songList = SongList([]).list;
 
@@ -51,10 +51,10 @@ class _videos extends State<Videos> {
               width: 100,
             ),
             Row(
-              children: [
-                UserInfoPart(songItem: _songList[index]),
-                CommentPart(songItem: _songList[index]),
-              ]
+                children: [
+                  UserInfoPart(songItem: _songList[index]),
+                  CommentPart(songItem: _songList[index]),
+                ]
             )
           ],
         );
