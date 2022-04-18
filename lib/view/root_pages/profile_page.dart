@@ -1,3 +1,4 @@
+import 'package:duu_chin/view/sub_pages/profile.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -14,7 +15,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('profile page'),
+        child: Profile(),
       ),
     );
   }
